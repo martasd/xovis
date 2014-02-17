@@ -1,0 +1,12 @@
+{
+    "name": "xovis-couchapp",
+    "version": "0.0.1",
+    "description": "Couchapp for visualizing XO usage",
+    "attachments": ["index.html", "css"],
+    "modules": ["lib"],
+    "dependencies": {
+	"attachments": null,
+	"modules": null
+    }
+}
+    
