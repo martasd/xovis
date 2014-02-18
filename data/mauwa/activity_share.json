@@ -1,0 +1,38 @@
+{
+    "stats": [
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        1, 
+        3, 
+        3, 
+        5, 
+        5, 
+        14, 
+        25, 
+        75, 
+        307
+    ], 
+    "categories": [
+        "Web", 
+        "Read", 
+        "TurtleArt", 
+        "TypingTurtle", 
+        "Speak", 
+        "Pippy", 
+        "Scribble", 
+        "Jukebox", 
+        "physics", 
+        "AbiWord", 
+        "Colors", 
+        "Etoys", 
+        "TamTamMini", 
+        "Record", 
+        "PustakalayaXO", 
+        "EPaath2"
+    ]
+}

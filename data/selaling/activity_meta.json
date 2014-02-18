@@ -1,0 +1,98 @@
+{
+    "Web": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }, 
+    "Etoys": {
+        "count": 5, 
+        "public": 0, 
+        "private": 5, 
+        "keep": 0
+    }, 
+    "TurtleArt": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }, 
+    "Scribble": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }, 
+    "Read": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }, 
+    "AbiWord": {
+        "count": 3, 
+        "public": 0, 
+        "private": 3, 
+        "keep": 0
+    }, 
+    "EPaath2": {
+        "count": 307, 
+        "public": 0, 
+        "private": 307, 
+        "keep": 0
+    }, 
+    "TamTamMini": {
+        "count": 14, 
+        "public": 0, 
+        "private": 14, 
+        "keep": 0
+    }, 
+    "Record": {
+        "count": 25, 
+        "public": 0, 
+        "private": 25, 
+        "keep": 0
+    }, 
+    "Colors": {
+        "count": 5, 
+        "public": 0, 
+        "private": 5, 
+        "keep": 0
+    }, 
+    "PustakalayaXO": {
+        "count": 75, 
+        "public": 0, 
+        "private": 75, 
+        "keep": 0
+    }, 
+    "TypingTurtle": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }, 
+    "Pippy": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }, 
+    "physics": {
+        "count": 3, 
+        "public": 0, 
+        "private": 3, 
+        "keep": 0
+    }, 
+    "Jukebox": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }, 
+    "Speak": {
+        "count": 1, 
+        "public": 0, 
+        "private": 1, 
+        "keep": 0
+    }
+}

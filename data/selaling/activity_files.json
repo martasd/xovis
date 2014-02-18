@@ -1,0 +1,30 @@
+{
+    "stats": [
+        1, 
+        1, 
+        4, 
+        9, 
+        9, 
+        11, 
+        13, 
+        28, 
+        37, 
+        56, 
+        352, 
+        1469
+    ], 
+    "categories": [
+        "VisualMatch", 
+        "TurtleArt", 
+        "Finance", 
+        "ViewSlides", 
+        "TypingTurtle", 
+        "Pippy", 
+        "SocialCalc", 
+        "Web", 
+        "Etoys", 
+        "AbiWord", 
+        "physics", 
+        "PustakalayaXO"
+    ]
+}
