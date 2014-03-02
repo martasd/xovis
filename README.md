@@ -9,6 +9,10 @@ visualizes XO Journal backup data from a local Couch database.
 
 ### On a schoolserver
 
+* Ensure all dependencies are installed
+
+		yum install -y python-pip curl git"
+
 * Install Couch package
 
 		yum install couchdb
@@ -28,10 +32,10 @@ visualizes XO Journal backup data from a local Couch database.
 
 	and click on *Create Database ...* in the upper left corner.
 
-* Replicate existing visualization application `xo-vis` from the source server
+* Replicate existing visualization application `xovis` from the source server
   to the local database
 
-		curl http://127.0.0.1:5984/_replicate -H 'Content-Type: application/json' -d '{ "source": "<source-server-name>/xo-vis", "target": "https://127.0.0.1:5984/<deployment-name>" }'
+		curl http://127.0.0.1:5984/_replicate -H 'Content-Type: application/json' -d '{ "source": "<source-server-name>/xovis", "target": "https://127.0.0.1:5984/<deployment-name>" }'
 		
 * Verify that the replication succeeded
 
@@ -79,3 +83,13 @@ through the newly added records.
 		http://127.0.0.1:5984/<deployment-name>/_design/xovis/index.html
 
 **Enjoy the beautiful view!**
+
+
+## For developers
+
+* Install Kanso framework
+
+		yum install nodejs npm
+		npm install -g kanso
+
+* See Kanso documentation for modifying the Couch App.
