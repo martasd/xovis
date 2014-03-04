@@ -46,6 +46,7 @@ table {
 
 h1 {
     font: 30px / 100% Arial, Helvetica, sans-serif;
+    padding-right: 80px;
 }
 
 h4 {
@@ -69,7 +70,7 @@ a {
 #left-container, 
 #right-container, 
 #center-container {
-    height:600px;
+    height:700px;
     position:absolute;
     top:0;
 }
