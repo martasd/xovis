@@ -12,27 +12,13 @@
 	<!-- var activity_files = require('lib/activity_files'); -->
 	<!-- var activity_share = require('lib/activity_share'); -->
 	<!-- var stock_example = require('lib/stock_example'); -->
-	var timeofday = require('lib/activity_timeofday');
-	var months = require('lib/activity_months');
-	var years = require('lib/activity_years);
+	<!-- var timeofday = require('lib/activity_timeofday'); -->
+	<!-- var months = require('lib/activity_months'); -->
+	<!-- var years = require('lib/activity_years); -->
+	var by_years = require('lib/activity_by_years');
 	$(document).ready(function() {
-	years.create_chart('mauwa');
+	by_years.create_chart('selaling');
 	});
-	
-	<!-- var db = require('db').current(); -->
-	<!-- var $ = require('jquery'); -->
-
-	<!-- db.getView('xovis-couchapp', 'activity', {'group':'true'}, function (err, data) { -->
-	<!-- if (err) { -->
-	<!-- return alert(err); -->
-	<!-- } -->
-	<!-- for (var i = 0; i < data.rows.length; i++) { -->
-	<!-- 		    $('<li/>').text(data.rows[i].key).appendTo('#center-container'); -->
-	<!-- 		    } -->
-	<!-- 		    }); -->
-			    
-	<!-- var main = require('lib/main'); -->
-	<!-- main.init(); -->
     </script>
 
 
