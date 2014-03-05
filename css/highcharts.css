@@ -95,6 +95,7 @@ a {
 
 #right-container {
     right:0;
+    text-align: left;
     background-image:url('col1.png');
     background-position:center left;
     border-right:1px solid #ddd;
