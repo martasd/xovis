@@ -1,20 +1,30 @@
 #!/bin/bash
 
 # Deploys XOvis app on a RHEL-based schoolserver. Requires internet connection.
-# Usage: deploy_xovis.sh DEPLOYMENT_NAME
-#
+# Usage: deploy_xovis.sh DEPLOYMENT_NAME SRC_DB_HOST [CLONE_DEST]
+# Parameters:
+#   DEPLOYMENT_NAME, the name of the deployment site
+#   SRC_DB_HOST, the url (including the port) of the source Couch database
+#   CLONE_DEST, path to where stats repository is cloned (/opt by default)
 
 DEPS="python-pip curl git"
 DEPLOYMENT=$1
 USER=admin
 PASS=admin
 CREDENTIALS=$USER:$PASS
-XOVIS_HOST_SRC=http://dev.olenepal.org:5984
+XOVIS_HOST_SRC=$2
 XOVIS_HOST_TARGET_INIT=127.0.0.1:5984
 XOVIS_HOST_TARGET=http://$CREDENTIALS@$XOVIS_HOST_TARGET_INIT
 DB_NAME=xovis
 DB_URL=$XOVIS_HOST_TARGET_INIT/$DB_NAME
 INSERT_STATS_REPO=https://github.com/martasd/xo-stats.git
+
+if [ $# -gt 2 ]
+then
+	CLONE_DEST=$3
+else
+	CLONE_DEST=/opt
+fi
 
 yum install -y $DEPS couchdb 
 echo "Installed Couch with all its dependencies."
@@ -31,9 +41,9 @@ DB_CREATED=$(curl -X PUT $DB_URL)
 ADMIN_ADDED=$(curl -X PUT $XOVIS_HOST_TARGET_INIT/_config/admins/$USER -d "\"$PASS\"")
 if [ "$DB_CREATED" == '{"ok":true}' ] && [ "$ADMIN_ADDED" == '']
 then
-    echo "Created a Couch db $DEPLOYMENT and added $USER to admins. Relax.:)"
+    echo "Created a Couch db $DB_NAME and added $USER to admins. Relax.:)"
 else
-    echo "Db creation $DEPLOYMENT failed or user $USER was not added as admin."
+    echo "Db creation $DB_NAME failed or user $USER was not added as admin."
     exit 1
 fi
 
@@ -46,10 +56,12 @@ else
     exit 1
 fi 
 
+mkdir -p $CLONE_DEST
+cd $CLONE_DEST
 git clone $INSERT_STATS_REPO
 cd xo-stats
 pip install -r requirements.txt
-echo "Fetched the latest version of stats script."
+echo "Copied the latest version of stats script into $CLONE_DEST."
 
 echo "At the deployment site:"
 echo "First, copy back user backup data to the server after updating it:"
