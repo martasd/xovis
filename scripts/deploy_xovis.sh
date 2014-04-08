@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Deploys XOvis app on a RHEL-based schoolserver. Requires internet connection.
-# Usage: deploy_xovis.sh DEPLOYMENT_NAME SRC_DB_HOST [CLONE_DEST]
+# Usage: deploy_xovis.sh DEPLOYMENT_NAME [SRC_DB_HOST] [CLONE_DEST]
 # Parameters:
 #   DEPLOYMENT_NAME, the name of the deployment site
 #   SRC_DB_HOST, the url (including the port) of the source Couch database
-#   CLONE_DEST, path to where stats repository is cloned (/opt by default)
+#                (default: https://martasd.cloudant.com/xovis-couchapp)
+#   CLONE_DEST, path to where stats repository is cloned (default: /opt)
 
 DEPS="python-pip curl git"
-DEPLOYMENT=$1
 USER=admin
 PASS=admin
 CREDENTIALS=$USER:$PASS
@@ -19,12 +19,46 @@ DB_NAME=xovis
 DB_URL=$XOVIS_HOST_TARGET_INIT/$DB_NAME
 INSERT_STATS_REPO=https://github.com/martasd/xo-stats.git
 
-if [ $# -gt 2 ]
-then
-	CLONE_DEST=$3
-else
-	CLONE_DEST=/opt
+# defaults
+SRC_DB_HOST=https://martasd.cloudant.com/xovis-couchapp
+CLONE_DEST=/opt
+
+# Parse cmdline arguments using getopts
+USAGE="Usage: deploy_xovis.sh [-s SRC_DB_HOST] [-c CLONE_DEST] DEPLOYMENT_NAME"
+
+while getopts "s:c:" opt; do
+    case $opt in
+	h)
+	    echo $USAGE
+	    exit 0
+	    ;;
+	s)
+	    SRC_DB_HOST=$OPTARG
+	    ;;
+	c)
+	    CLONE_DEST=$OPTARG
+	    ;;
+	\?)
+	    echo "Invalid option: -$OPTARG"
+	    echo $USAGE >&2
+	    exit 1
+	    ;;
+    esac
+done
+
+# Remove parsed options
+shift `expr $OPTIND - 1`
+
+# We require at least one non-option arg
+if [ $# -eq 0 ]; then
+    echo $USAGE >&2
+    exit 1
 fi
+
+# The only required arg is deployment name
+for PARAM in "$@"; do
+    DEPLOYMENT=$PARAM
+done
 
 yum install -y $DEPS couchdb 
 echo "Installed Couch with all its dependencies."
