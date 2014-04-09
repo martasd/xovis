@@ -6,6 +6,76 @@ html, body {
     text-align: center;
 }
 
+#container {
+    width: 100%;
+    margin:0 auto;
+    position: relative;
+}
+
+#left-container, #right-container {
+    text-align: center;
+    color:#686c70;
+    background-color:#fff;
+    background-repeat:no-repeat;
+}
+
+@media screen and (min-width:600px) {
+    #left-container {
+	float: left;
+	width: 15%;
+	background-position:center right;
+	border-right:1px solid #ddd;
+    }
+
+    #right-container {
+	float: right;
+	width: 15%;
+	background-position:center left;
+    }
+    #center-container {
+	margin-left:15%;
+	margin-right:15%;
+    }
+}
+
+@media screen and (max-width:599px) {
+    #left-container {
+	display: inline;
+	background-position:center right;
+    }
+
+    #right-container {
+	display: inline;
+	background-position:center left;
+    }
+
+    .button {
+	transform: scale(0.75);
+	-moz-transform: scale(0.75);
+	-webkit-transform: scale(0.75);
+    }
+}
+
+#center-container {
+    max-width:1100px;
+    min-width:600px;
+    height:800px;
+    min-height:500px;
+    overflow: hidden;
+}
+
+#right-container h4{
+    text-indent:8px;
+}
+
+#log {
+    position:absolute;
+    top:10px;
+    font-size:1.0em;
+    font-weight:bold;
+    color:#23A4FF;
+}
+
 /*
   Adapted from
   http://stackoverflow.com/questions/1895476/how-to-style-a-select-dropdown-with-css-only-without-javascript
@@ -14,16 +84,20 @@ label {
     position: relative;
     display: inline-block;
 }
+
 select {
+    width: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: inline-block;
     padding: 4px 3px 5px 5px;
-    width: 150px;
     outline: none;
     color: #74646e;
     border: 1px solid #C8BFC4;
     border-radius: 4px;
     box-shadow: inset 1px 1px 2px #ddd8dc;
-    margin:10px 20px;
     background-color: #fff;
 }
 
@@ -39,14 +113,13 @@ label:after {
     background: no-repeat right center white;
     pointer-events: none;
 }
-table {
-    margin-top:-10px;
-    margin-left:7px;
+
+.text {
+    margin: 7px;
 }
 
 h1 {
     font: 30px / 100% Arial, Helvetica, sans-serif;
-    padding-right: 80px;
 }
 
 h4 {
@@ -60,84 +133,7 @@ a {
     color:#23A4FF;
 }
 
-#container {
-    /*width: 1000px; */
-    height: 600px;
-    margin:0 auto;
-    position:relative;
-}
-
-#left-container, 
-#right-container, 
-#center-container {
-    height:700px;
-    position:absolute;
-    top:0;
-}
-
-#left-container, #right-container {
-    width:200px;
-    color:#686c70;
-    text-align: left;
-    overflow: auto;
-    background-color:#fff;
-    background-repeat:no-repeat;
-    border-bottom:1px solid #ddd;
-}
-
-#left-container {
-    left:0;
-    background-image:url('col2.png');
-    background-position:center right;
-    border-left:1px solid #ddd;
-    
-}
-
-#right-container {
-    right:0;
-    text-align: left;
-    background-image:url('col1.png');
-    background-position:center left;
-    border-right:1px solid #ddd;
-}
-
-#right-container h4{
-    text-indent:8px;
-}
-
-#center-container {
-    width:1100px;
-    left:200px;
-}
-
-.text {
-    margin: 7px;
-}
-
-#inner-details {
-    font-size:0.8em;
-    list-style:none;
-    margin:7px;
-}
-
-#log {
-    position:absolute;
-    top:10px;
-    font-size:1.0em;
-    font-weight:bold;
-    color:#23A4FF;
-}
-
-
-#infovis {
-    position:relative;
-    width:600px;
-    height:600px;
-    margin:auto;
-    overflow:hidden;
-}
-
-/*TOOLTIPS*/
+/* TOOLTIPS */
 .tip {
     color: #111;
     width: 139px;
@@ -149,14 +145,19 @@ a {
     box-shadow:#555 2px 2px 8px;
     opacity:0.9;
     filter:alpha(opacity=90);
-    font-size:10px;
+    font-size:12px;
     font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
     padding:7px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
-/*BUTTONS*/
-  
+/* BUTTONS */
 .button {
+  width: 110px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 14px;
   display: inline-block;
   outline: none;
   cursor: pointer;
@@ -171,7 +172,6 @@ a {
   -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-  margin:10px 40px;
 }
 
 .button:hover {
@@ -183,7 +183,7 @@ a {
   top: 1px;
 }
 
-/* gray */
+/* COLORS */
 .gray {
   color: #e9e9e9;
   border: solid 1px #555;
@@ -207,7 +207,6 @@ a {
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#575757', endColorstr='#888888');
 }
 
-/* white */
 .white {
   color: #606060;
   border: solid 1px #b7b7b7;
