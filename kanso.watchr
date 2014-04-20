@@ -1,0 +1,1 @@
+watch('.*') { system('kanso push') }
