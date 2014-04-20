@@ -80,17 +80,17 @@ html, body {
   Adapted from
   http://stackoverflow.com/questions/1895476/how-to-style-a-select-dropdown-with-css-only-without-javascript
   */
-label {
+.drop-down-label {
     position: relative;
     display: inline-block;
 }
 
-select {
-    width: 110px;
+.drop-down-select {
+    width: 125px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     display: inline-block;
     padding: 4px 3px 5px 5px;
     outline: none;
@@ -102,16 +102,21 @@ select {
 }
 
 /* Select arrow styling */
-label:after {
-    content: '';
-    width: 23px;
-    height: 23px;
-    position: absolute;
-    display: inline-block;
-    top: 4px;
-    right: 4px;
-    background: no-repeat right center white;
-    pointer-events: none;
+/* label:after { */
+/*     content: ''; */
+/*     width: 23px; */
+/*     height: 23px; */
+/*     position: absolute; */
+/*     display: inline-block; */
+/*     top: 4px; */
+/*     right: 4px; */
+/*     background: no-repeat right center white; */
+/*     pointer-events: none; */
+/* } */
+
+.add-drop-button {
+    margin: 4px;
+    margin-right: 0px;
 }
 
 .text {
@@ -133,6 +138,7 @@ a {
     color:#23A4FF;
 }
 
+
 /* TOOLTIPS */
 .tip {
     color: #111;
@@ -153,8 +159,8 @@ a {
 }
 
 /* BUTTONS */
-.button {
-  width: 110px;
+.graph-button {
+  width: 120px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 14px;
