@@ -4,7 +4,7 @@
 # this script requires that Couch DB is running on a host from which XOvis can
 # be replicated
 #
-# Usage: deploy_offline_xovis.sh IP-ADDRESS
+# Usage: install_xovis_offline.sh IP-ADDRESS
 #        IP-ADDRESS- ip address of the db source host
 #
 # Precondition: Change the deployment name in lib/main.js in XOvis Couch App

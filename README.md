@@ -1,95 +1,69 @@
 # XOvis
 
-This is a Couch App built using [Kanso](http://kan.so) framework which
-visualizes XO Journal backup data from a local Couch database.
-
+XOvis is a Couch App built using [Kanso](htttp://kan.so) framework, which
+visualizes XO Journal backup data collected from OLPC deployments on
+schoolservers.
 
 ## Installation
 
+### On RHEL/Fedora machine
 
-### On a schoolserver
+#### Install with a bash script
 
-* Ensure all dependencies are installed
+* To install the application, simply run `install_xovis.sh`
 
-		yum install -y python-pip curl git"
+		./scripts/install_xovis.sh
 
-* Install Couch package
+#### Install manually
 
-		yum install couchdb
+* Install project dependecies
 
-* Verify that installation succeeded
+		yum install python-pip git couchdb nodejs npm"
 
-		curl http://127.0.0.1:5984
-		
-* Create a new Couch database
+* Install Kanso framework
 
-		curl -X PUT http://127.0.0.1:5984/<deployment-name>
+		npm install -g kanso
 
-	Couch also provides a graphical interface for managing databases called
-    *Futon*. To create a new database using Futon, go to 
+* Clone this repository in the destination of your choice
 
-		http://127.0.0.1:5984/_utils
+		git clone https://github.com/martasd/xovis.git
 
-	and click on *Create Database ...* in the upper left corner.
+* Install the application into a new database
+	
+		cd xovis
+		kanso createdb http://localhost:5984/xovis
+		kanso push http://localhost:5984/xovis
 
-* Replicate existing visualization application `xovis` from the source server
-  to the local database
+where `xovis` is the name of the new database.
 
-		curl http://127.0.0.1:5984/_replicate -H 'Content-Type: application/json' -d '{ "source": "<source-server-name>/xovis", "target": "https://127.0.0.1:5984/<deployment-name>" }'
-		
-* Verify that the replication succeeded
+### Load existing deployment data into the database
 
-		curl http://127.0.0.1:5984/<deployment-name>
+* Copy XO Journal backup data into the same database using xostats Python script
 
-  `doc_count` should be equal to 1.
-
-
-	Congratulations! You have successfuly installed `XOvis` Couch application!
-But wait, there is no data to visualize yet!
-
-
-## Load existing deployment data
-
-* Clone the latest `process_journal_stats.py` script
-
-		git clone https://github.com/martasd/xo-stats.git
-
-	This script will insert data from Sugar Journal backups into the newly
-created Couch database.
-
-* Install Python dependencies
-
-		cd xo-stats
+		git clone https://github.com/martasd/xostats.git
 		pip install -r requirements.txt
-
-* Insert Journal backup data into the database
-
-		./process_journal_stats.py dbinsert <db-name> --deployment <deployment-name>
+		./process_journal_stats.py dbinsert xovis --deployment <deployment-name>
 		
-	For all command-line options, see `--help`.
+* To manage Couch databases using a browser dashboard, go to
 
-* Verify that data has been inserted into the database
+		http://localhost:5984/_utils
+		
 
-		curl http://127.0.0.1:5984/<deployment-name>
+#### Alternative install (without requiring NodeJS)
 
-	Alternatively, go to Futon, select the deployment's database and browse
-through the newly added records.
+* If you prefer to avoid having to install Node JS, you can also install from a
+database dump:
+
+		./scripts/install_xovis_dbdump.sh
+
+	
+*Note:* Downloads of database dump file.
 
 
 ## Visualize
 
 * Open up a browser and go to
 
-		http://127.0.0.1:5984/<deployment-name>/_design/xovis/index.html
+		http://localhost:5984/<deployment-name>/_design/xovis-couchapp/index.html
 
 **Enjoy the beautiful view!**
-
-
-## For developers
-
-* Install Kanso framework
-
-		yum install nodejs npm
-		npm install -g kanso
-
-* See Kanso documentation for modifying the Couch App.
