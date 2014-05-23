@@ -64,6 +64,10 @@ html, body {
     overflow: hidden;
 }
 
+#right-container {
+    text-align: left;
+}
+
 #right-container h4{
     text-indent:8px;
 }
@@ -125,6 +129,7 @@ html, body {
 
 h1 {
     font: 30px / 100% Arial, Helvetica, sans-serif;
+    padding-right: 80px;
 }
 
 h4 {
@@ -138,6 +143,9 @@ a {
     color:#23A4FF;
 }
 
+.db-stats {
+    margin: 0px;
+}
 
 /* TOOLTIPS */
 .tip {
