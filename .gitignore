@@ -1,3 +1,4 @@
 .kansorc
+kanso.watchr
 lib/*test.js
 dataflow.dia
