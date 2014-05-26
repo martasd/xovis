@@ -59,8 +59,8 @@ html, body {
 #center-container {
     max-width:1100px;
     min-width:600px;
-    height:800px;
     min-height:500px;
+    height:900px;
     overflow: hidden;
 }
 
@@ -80,6 +80,10 @@ html, body {
     color:#23A4FF;
 }
 
+#timeofday-note {
+    font-weight: bold;
+    margin: 2%;
+    }
 /*
   Adapted from
   http://stackoverflow.com/questions/1895476/how-to-style-a-select-dropdown-with-css-only-without-javascript
@@ -146,6 +150,7 @@ a {
 .db-stats {
     margin: 0px;
 }
+
 
 /* TOOLTIPS */
 .tip {
