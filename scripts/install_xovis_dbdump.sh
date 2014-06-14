@@ -15,7 +15,7 @@ XOVIS_HOST_TARGET_INIT=127.0.0.1:5984
 XOVIS_HOST_TARGET=http://$CREDENTIALS@$XOVIS_HOST_TARGET_INIT
 DB_NAME=xovis
 DB_URL=$XOVIS_HOST_TARGET_INIT/$DB_NAME
-XOSTATS_REPO=https://github.com/martasd/xo-stats.git
+XOVIS_REPO=https://github.com/martasd/xovis.git
 
 # defaults
 INSTALL_DEST=/opt
@@ -31,8 +31,7 @@ while getopts "s:c:" opt; do
 	    ;;
 	d)
 	    INSTALL_DEST=$OPTARG
-			XOSTATS_INSTALL_DEST=$INSTALL_DEST/xo-stats
-			mkdir -p $INSTALL_DEST
+	    mkdir -p $INSTALL_DEST
 	    ;;
 	\?)
 	    echo "Invalid option: -$OPTARG"
@@ -103,14 +102,16 @@ else
 	exit 1
 fi
 
-git clone $XOSTATS_REPO $XOSTATS_INSTALL_DEST
-pip install -r $XOSTATS_INSTALL_DEST/requirements.txt
+
+XOVIS_INSTALL_DEST=$INSTALL_DEST/xovis
+git clone $XOVIS_REPO $XOVIS_INSTALL_DEST
+pip install -r $INSTALL_DEST/process_stats/requirements.txt
 echo "Copied the latest version of stats script into $XOSTATS_INSTALL_DEST."
 
 
 echo "Run the following command at the deployment site to insert existing\
 data from /library/users into the database:"
-echo "$XOSTATS_INSTALL_DEST/process_journal_stats.py dbinsert $DB_NAME
+echo "$XOSTATS_INSTALL_DEST/process_stats/process_journal_stats.py dbinsert $DB_NAME
 --deployment $DEPLOYMENT --server $XOVIS_HOST_TARGET"
 
 echo "To manage Couch using browser dashboard:"

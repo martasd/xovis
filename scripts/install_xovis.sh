@@ -12,7 +12,6 @@ function online_install {
 
 DEPS="python-pip git couchdb nodejs npm"
 XOVIS_REPO_DEST=$REPO_DEST/xovis
-XOSTATS_REPO_DEST=$REPO_DEST/xostats
 mkdir -p $REPO_DEST
 
 echo "Installing project dependencies."
@@ -42,18 +41,12 @@ fi
 echo "Loading the application into new database $DB_NAME."
 kanso push $XOVIS_REPO_DEST $DB_URL
 
-if [ ! -d "$XOSTATS_REPO_DEST" ]
-then
-	echo "Cloning xo-stats repository."
-	git clone https://github.com/martasd/xo-stats.git $XOSTATS_REPO_DEST
-fi
-
 echo "Installing Python dependencies."
-pip install -r $XOSTATS_REPO_DEST/requirements.txt
+pip install -r $XOVIS_REPO_DEST/process_stats/requirements.txt
 
 echo "Run the following command at the deployment site to insert existing\
 data from /library/users into the database:"
-echo "$XOSTATS_REPO_DEST/process_journal_stats.py dbinsert $DB_NAME\
+echo "$XOVIS_REPO_DEST/process_stats/process_journal_stats.py dbinsert $DB_NAME\
 --deployment $DEPLOYMENT --server $DB_HOST"
 
 } # online_install
@@ -103,7 +96,7 @@ fi
 cd $ROOT_DIR/python-packages
 pip install CouchDB-0.9.tar.gz
 pip install docopt-0.6.1.tar.gz
-echo "Installed Python requirements for xo-stats and couchdb-load\n"
+echo "Installed Python requirements for process_journal_stats.py.\n"
 
 cd $ROOT_DIR
 couchdb-load $DB_URL --input xovis.json
