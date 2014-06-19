@@ -138,7 +138,11 @@ def _get_metadata(metadata_in, sugar_version):
     global metadata
 
     metadata_out = {}
-    activity_name = metadata_in.pop('activity')
+
+    try:
+        activity_name = metadata_in.pop('activity')
+    except KeyError:
+        activity_name = ''
 
     # sanitize activity name
     if activity_name:
